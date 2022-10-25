@@ -47,10 +47,10 @@ def enhancement_inference(model, img):
 
 def parse_args():
     parser = argparse.ArgumentParser(description='Enhancement demo')
-    parser.add_argument('config', help='test config file path')
-    parser.add_argument('checkpoint', help='checkpoint file')
-    parser.add_argument('img_path', help='path to input image file')
-    parser.add_argument('save_path', help='path to save enhancement result')
+    parser.add_argument('--config', help='test config file path')
+    parser.add_argument('--checkpoint', help='checkpoint file')
+    parser.add_argument('--img_path', help='path to input image file')
+    parser.add_argument('--save_path', help='path to save enhancement result')
     parser.add_argument('--device', type=int, default=0, help='CUDA device id')
     args = parser.parse_args()
     return args
@@ -62,10 +62,10 @@ def main():
     if not os.path.isfile(args.img_path):
         raise ValueError('It seems that you did not input a valid '
                          '"image_path".')
-
+    print("Start")
     model = init_model(
         args.config, args.checkpoint, device=torch.device('cuda', args.device))
-
+    print("Load model finish")
     output = enhancement_inference(model, args.img_path)
     output = tensor2img(output)
 
