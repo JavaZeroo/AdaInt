@@ -69,10 +69,10 @@ test_pipeline = [
 ]
 
 data = dict(
-    workers_per_gpu=4,
+    workers_per_gpu=8,
     train_dataloader=dict(samples_per_gpu=1),
     val_dataloader=dict(samples_per_gpu=1),
-    test_dataloader=dict(samples_per_gpu=1, workers_per_gpu=1),
+    test_dataloader=dict(samples_per_gpu=1, workers_per_gpu=4),
 
     # train
     train=dict(
