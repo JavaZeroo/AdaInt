@@ -8,16 +8,16 @@ custom_imports=dict(
 model = dict(
     type='AiLUT',
     n_ranks=3,
-    n_vertices=33,
+    n_vertices=85,
     en_adaint=True,
     en_adaint_share=False,
-    backbone='tpami', # 'res18'
+    backbone='res18', # 'tpami'
     pretrained=False,
     n_colors=3,
-    sparse_factor=0.0001,
+    sparse_factor=0.01,
     smooth_factor=0,
-    monotonicity_factor=10.0,
-    recons_loss=dict(type='MSELoss', loss_weight=1.0, reduction='mean'))
+    monotonicity_factor=5.0,
+    recons_loss=dict(type='MSELoss', loss_weight=10.0, reduction='mean'))
 # model training and testing settings
 train_cfg = dict(n_fix_iters=2000*5)
 test_cfg = dict(metrics=['PSNR'], crop_border=0)
@@ -72,7 +72,7 @@ data = dict(
     workers_per_gpu=8,
     train_dataloader=dict(samples_per_gpu=1),
     val_dataloader=dict(samples_per_gpu=1),
-    test_dataloader=dict(samples_per_gpu=1, workers_per_gpu=4),
+    test_dataloader=dict(samples_per_gpu=1, workers_per_gpu=8),
 
     # train
     train=dict(
@@ -109,7 +109,7 @@ data = dict(
 # optimizer
 optimizers = dict(
     type='Adam',
-    lr=1e-5,
+    lr=1e-6,
     weight_decay=0,
     betas=(0.9, 0.999),
     eps=1e-8,
