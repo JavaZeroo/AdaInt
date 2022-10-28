@@ -8,13 +8,13 @@ custom_imports=dict(
 model = dict(
     type='AiLUT',
     n_ranks=3,
-    n_vertices=85,
+    n_vertices=33,
     en_adaint=True,
     en_adaint_share=False,
     backbone='tpami', # 'res18'
     pretrained=False,
     n_colors=3,
-    sparse_factor=0.001,
+    sparse_factor=0.0001,
     smooth_factor=0,
     monotonicity_factor=10.0,
     recons_loss=dict(type='MSELoss', loss_weight=1.0, reduction='mean'))
@@ -117,12 +117,12 @@ optimizers = dict(
 lr_config = None
 
 # learning policy
-total_iters = 4500*100
+total_iters = 4500*300
 
 checkpoint_config = dict(interval=4500, save_optimizer=True, by_epoch=False)
 evaluation = dict(interval=4500, save_image=False)
 log_config = dict(
-    interval=100,
+    interval=300,
     hooks=[
         dict(type='TextLoggerHook', by_epoch=False),
     ])
