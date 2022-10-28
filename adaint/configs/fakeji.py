@@ -11,15 +11,15 @@ model = dict(
     n_vertices=85,
     en_adaint=True,
     en_adaint_share=False,
-    backbone='res18', # 'tpami'
+    backbone='tpami', # 'res18'
     pretrained=False,
     n_colors=3,
-    sparse_factor=0.01,
+    sparse_factor=0.001,
     smooth_factor=0,
-    monotonicity_factor=5.0,
-    recons_loss=dict(type='MSELoss', loss_weight=10.0, reduction='mean'))
+    monotonicity_factor=10.0,
+    recons_loss=dict(type='MSELoss', loss_weight=1.0, reduction='mean'))
 # model training and testing settings
-train_cfg = dict(n_fix_iters=2000*5)
+train_cfg = dict(n_fix_iters=4500*5)
 test_cfg = dict(metrics=['PSNR'], crop_border=0)
 
 # dataset settings
@@ -117,10 +117,10 @@ optimizers = dict(
 lr_config = None
 
 # learning policy
-total_iters = 2000*100
+total_iters = 4500*100
 
-checkpoint_config = dict(interval=2000, save_optimizer=True, by_epoch=False)
-evaluation = dict(interval=2000, save_image=False)
+checkpoint_config = dict(interval=4500, save_optimizer=True, by_epoch=False)
+evaluation = dict(interval=4500, save_image=False)
 log_config = dict(
     interval=100,
     hooks=[
