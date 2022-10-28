@@ -127,9 +127,7 @@ log_config = dict(
         dict(type='TextLoggerHook', by_epoch=False),
     ])
 
-visual_config = dict(
-    output_dir='visual'
-)
+visual_config = None
 
 # runtime settings
 dist_params = dict(backend='nccl')
